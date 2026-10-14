@@ -1,32 +1,61 @@
-# the-story-within-ecommerce
-An innovative e-commerce bookstore built on PrestaShop, featuring a RAG-based AI shopping assistant (Llama 3 via Groq API), real-time product customization, and gamified shopping experiences. (Bachelor's Thesis Project)
 # 🦉 The Story Within - Smart E-Commerce Platform
 
 **The Story Within** is an innovative e-commerce bookstore developed as a Bachelor's Thesis project. Built on top of the PrestaShop architecture, it transcends traditional online retail by integrating Generative AI, gamification, and real-time graphic customization to deliver a highly interactive user experience.
 
-## ✨ Key Features
+![Homepage](images/first_page.png)
+
+---
+
+## ✨ Key Features & Visual Walkthrough
 
 ### 1. Fable, The Magic Owl (AI Shopping Assistant)
-A conversational AI assistant powered by **Llama 3** (via **Groq API**) designed to act as a digital bookseller.
-* **RAG Architecture (Retrieval-Augmented Generation):** The AI is strictly anchored to the store's MySQL database. It dynamically reads the inventory and recommends *only* books that are currently in stock.
-* **Smart Token Optimization:** A custom PHP middleware parses user prompts to inject full book descriptions only when relevant keywords are detected, saving API tokens.
-* **Interactive UI:** AI responses are automatically parsed via Regex to generate clickable HTML buttons directly in the chat window.
+A conversational AI assistant powered by **Llama 3** (via **Groq API**) designed to act as a digital bookseller. 
+* **RAG Architecture (Retrieval-Augmented Generation):** The AI dynamically reads the store's inventory and recommends *only* books that are currently in stock, preventing AI hallucinations.
+* **Interactive UI:** AI responses are parsed via Regex to generate clickable HTML buttons directly in the chat window.
+
+|<img src="images/fable.png" width="250"> | <img src="images/fable2.png" width="250"> | <img src="images/fable3.png" width="250"> |
+|:---:|:---:|:---:|
+| **1. Greeting & Personality** | **2. RAG Validation (Out of stock)** | **3. Real Recommendation & Link** |
 
 ### 2. Live Preview Product Customizer
 A dynamic frontend module allowing users to create personalized book dedications.
-* **Real-Time DOM Manipulation:** Built with JavaScript/jQuery to instantly render text, custom fonts (including cursive), and HEX colors on the product mockup.
-* **FileReader API Integration:** Users can upload custom background images from their PC, which are rendered instantly in the browser without server-side latency.
+* **Real-Time DOM Manipulation:** Render text, custom fonts (including cursive), and colors on the product mockup instantly.
+* **FileReader API Integration:** Users can upload custom background images from their PC.
 
-### 3. Dynamic Pricing Algorithm
-A custom backend PHP module that calculates customization fees dynamically in the cart.
-* Implements a **Volume Discount Strategy** (e.g., standard price for the first dedication, discounted price for subsequent ones).
-* Uses PrestaShop's native `SpecificPrice` class and virtual carrier products to apply fees without altering the main product catalog.
+![Product Page Customizer](images/pagina_produs.png)
+
+### 3. Dynamic Pricing Algorithm & Cart Integration
+A custom backend PHP module that calculates customization fees dynamically in the cart, implementing a **Volume Discount Strategy**.
+* The Admin configures the pricing rules in the custom module settings.
+* The cart updates dynamically: charging the standard price for the first dedication and a discounted price for subsequent ones.
+
+![Module Configuration](images/dedication_pricing.png)
+
+|<img src="images/cart1.png" width="400"> | <img src="images/cart2.png" width="400"> |
+|:---:|:---:|
+| **Standard Fee for 1 Item** | **Discounted Fee applied for 2 Items** |
 
 ### 4. "Blind Date with a Book" (Gamification)
 An interactive module where users configure their reading preferences (Genre, Tropes, Cozy Drink) instead of picking a specific title.
 * Frontend validation limits user selections (e.g., max 3 tropes).
-* Data is stored cleanly in a custom MySQL table and bypassed by the dynamic pricing algorithm using a specific `blind_date` flag.
-* Preferences are displayed cleanly in the Back-Office, providing the admin with a quick psychological/literary profile of the buyer to fulfill the order.
+* Data is stored cleanly and bypasses the dynamic pricing algorithm.
+
+|<img src="images/blind_date1.png" width="400"> | <img src="images/blind_date2.png" width="400"> |
+|:---:|:---:|
+| **Step-by-step UI** | **Trope Selection Limit** |
+
+![Blind Date in Cart](images/cart_blind_date.png)
+
+### 5. Back-Office Operational Flow
+To ensure business viability, the custom data is seamlessly integrated into the PrestaShop Admin Dashboard, allowing staff to fulfill orders efficiently without errors.
+
+**Custom Dedication Details:**
+![Dashboard Dedications](images/dashboard_dedications.png)
+
+**Blind Date Preferences:**
+![Dashboard Blind Date](images/dashboard_blind_date.png)
+
+---
 
 ## 🛠️ Tech Stack
 
@@ -35,30 +64,27 @@ An interactive module where users configure their reading preferences (Genre, Tr
 * **AI & API Integration:** Groq API, Meta Llama 3 (llama-3.1-8b-instant), cURL, JSON
 * **Architecture:** MVC, Hooks, RAG (Retrieval-Augmented Generation)
 
-## 🎓 About
-This project was developed by **Denisa Coman** as a Bachelor's Thesis for the Faculty of Economic Sciences and Business Administration, Transilvania University of Brașov (2026). It serves as a proof-of-concept for how modern web technologies and Artificial Intelligence can re-humanize the digital retail experience.
-
 ## 🚀 Installation & Setup
 
 ### Prerequisites
-* **PrestaShop** (Version 1.7.8 or higher)
-* **PHP** (7.4 or higher)
+* **PrestaShop** (Version 1.7.8 or higher) & **PHP** (7.4 or higher)
 * A valid [Groq API Key](https://console.groq.com/) for the AI assistant.
 
 ### Step-by-Step Guide
 1. **Module Installation:** Download this repository and copy the `productcustomizer` folder into the `/modules/` directory of your PrestaShop installation.
-2. **Activation:** Log into your PrestaShop Back-Office. Navigate to *Modules -> Module Manager*, search for **ProductCustomizer**, and click **Install**. The module will automatically create the required custom database tables (`ps_product_customizer_dedication`) and the virtual fee product.
-3. **Configure Pricing:** Click on "Configure" on the module to set your *Standard Price* and *Discounted Price* for the dynamic pricing algorithm.
-4. **AI Setup:** Place the `fable-api.php` script in your desired directory. Open the file and replace `$apiKey = 'YOUR_GROQ_API_KEY_HERE';` with your actual Groq API key.
+2. **Activation:** Log into your PrestaShop Back-Office. Navigate to *Modules -> Module Manager*, search for **ProductCustomizer**, and click **Install**. 
+3. **Configure Pricing:** Click on "Configure" on the module to set your dynamic pricing rules.
+4. **AI Setup:** Place the `fable-api.php` script in your desired directory. Open the file and replace `$apiKey = 'YOUR_GROQ_API_KEY_HERE';` with your actual key.
 
-## 💡 How It Works (Usage)
+---
 
-### For Customers (Front-Office)
-* **Live Customization:** Navigate to any book product page. Toggle the customization section to write a dedication, choose fonts (e.g., cursive), and pick a background. The **Live Preview** will render your choices instantly.
-* **AI Assistant:** Click the floating Fable Owl icon. Ask for book recommendations based on tropes or moods. Fable will fetch real-time data from the store's inventory and provide clickable links to the books.
-* **Blind Date:** Add a "Blind Date with a Book" to the cart and configure your reading preferences (Genre, Tropes, Drink). The cart will cleanly display your choices without applying the standard dedication fee.
+## 🎥 Full Video Walkthrough
 
-### For Store Admins (Back-Office)
-* When an order is placed, go to the **Orders** tab in the PrestaShop admin panel.
-* A custom panel will automatically display the exact text, font, color, and background chosen by the user for custom dedications.
-* For "Blind Date" orders, the admin will see a clean list of the user's literary preferences, allowing for quick and accurate order fulfillment.
+If you want to see the platform in action, watch the full demonstration below, showcasing the entire flow (Live Preview, Dynamic Pricing, Fable AI, and Back-Office processing):
+
+
+
+---
+
+## 🎓 About
+This project was developed by **Denisa Coman** as a Bachelor's Thesis for the Faculty of Economic Sciences and Business Administration, Transilvania University of Brașov (2026). It serves as a proof-of-concept for how modern web technologies and Artificial Intelligence can re-humanize the digital retail experience.
