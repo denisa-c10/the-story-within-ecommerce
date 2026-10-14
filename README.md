@@ -2,7 +2,7 @@
 
 **The Story Within** is an innovative e-commerce bookstore developed as a Bachelor's Thesis project. Built on top of the PrestaShop architecture, it transcends traditional online retail by integrating Generative AI, gamification, and real-time graphic customization to deliver a highly interactive user experience.
 
-![Homepage](images/first_page.png)
+![Homepage](images/first page.png)
 
 ---
 
