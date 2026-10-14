@@ -37,3 +37,28 @@ An interactive module where users configure their reading preferences (Genre, Tr
 
 ## 🎓 About
 This project was developed by **Denisa Coman** as a Bachelor's Thesis for the Faculty of Economic Sciences and Business Administration, Transilvania University of Brașov (2026). It serves as a proof-of-concept for how modern web technologies and Artificial Intelligence can re-humanize the digital retail experience.
+
+## 🚀 Installation & Setup
+
+### Prerequisites
+* **PrestaShop** (Version 1.7.8 or higher)
+* **PHP** (7.4 or higher)
+* A valid [Groq API Key](https://console.groq.com/) for the AI assistant.
+
+### Step-by-Step Guide
+1. **Module Installation:** Download this repository and copy the `productcustomizer` folder into the `/modules/` directory of your PrestaShop installation.
+2. **Activation:** Log into your PrestaShop Back-Office. Navigate to *Modules -> Module Manager*, search for **ProductCustomizer**, and click **Install**. The module will automatically create the required custom database tables (`ps_product_customizer_dedication`) and the virtual fee product.
+3. **Configure Pricing:** Click on "Configure" on the module to set your *Standard Price* and *Discounted Price* for the dynamic pricing algorithm.
+4. **AI Setup:** Place the `fable-api.php` script in your desired directory. Open the file and replace `$apiKey = 'YOUR_GROQ_API_KEY_HERE';` with your actual Groq API key.
+
+## 💡 How It Works (Usage)
+
+### For Customers (Front-Office)
+* **Live Customization:** Navigate to any book product page. Toggle the customization section to write a dedication, choose fonts (e.g., cursive), and pick a background. The **Live Preview** will render your choices instantly.
+* **AI Assistant:** Click the floating Fable Owl icon. Ask for book recommendations based on tropes or moods. Fable will fetch real-time data from the store's inventory and provide clickable links to the books.
+* **Blind Date:** Add a "Blind Date with a Book" to the cart and configure your reading preferences (Genre, Tropes, Drink). The cart will cleanly display your choices without applying the standard dedication fee.
+
+### For Store Admins (Back-Office)
+* When an order is placed, go to the **Orders** tab in the PrestaShop admin panel.
+* A custom panel will automatically display the exact text, font, color, and background chosen by the user for custom dedications.
+* For "Blind Date" orders, the admin will see a clean list of the user's literary preferences, allowing for quick and accurate order fulfillment.
