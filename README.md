@@ -22,7 +22,15 @@ A dynamic frontend module allowing users to create personalized book dedications
 * **Real-Time DOM Manipulation:** Render text, custom fonts (including cursive), and colors on the product mockup instantly.
 * **FileReader API Integration:** Users can upload custom background images from their PC.
 
-![Product Page Customizer](images/pagina_produs.png)
+**Customizer Interface:**
+![Product Page Customizer](images/Screenshot%202026-04-26%20174747.png)
+
+**Dynamic DOM Updates (Live Preview):**
+|<img src="images/Screenshot%202026-04-26%20174800.png" width="250"> | <img src="images/Screenshot%202026-04-26%20174813.png" width="250"> | <img src="images/Screenshot%202026-04-26%20174953.png" width="250"> |
+|:---:|:---:|:---:|
+| **Card Mode (Default)** | **Book Mode (Texture Update)** | **Custom Upload & Font** |
+
+*(Note: The main product interface is available in `images/pagina_produs.png`)*
 
 ### 3. Dynamic Pricing Algorithm & Cart Integration
 A custom backend PHP module that calculates customization fees dynamically in the cart, implementing a **Volume Discount Strategy**.
@@ -75,14 +83,6 @@ To ensure business viability, the custom data is seamlessly integrated into the 
 2. **Activation:** Log into your PrestaShop Back-Office. Navigate to *Modules -> Module Manager*, search for **ProductCustomizer**, and click **Install**. 
 3. **Configure Pricing:** Click on "Configure" on the module to set your dynamic pricing rules.
 4. **AI Setup:** Place the `fable-api.php` script in your desired directory. Open the file and replace `$apiKey = 'YOUR_GROQ_API_KEY_HERE';` with your actual key.
-
----
-
-## 🎥 Full Video Walkthrough
-
-If you want to see the platform in action, watch the full demonstration below, showcasing the entire flow (Live Preview, Dynamic Pricing, Fable AI, and Back-Office processing):
-
-
 
 ---
 
